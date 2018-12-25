@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\StoreBreweryRequest;
 use App\Brewery;
+use App\Transformers\BreweryTransformer;
 
 class BreweryController extends Controller
 {
@@ -15,6 +16,11 @@ class BreweryController extends Controller
         $brewery->user()->associate($request->user());
 
         $brewery->save();
+
+        return fractal()
+            ->item($brewery)
+            ->transformWith(new BreweryTransformer)
+            ->toArray();
     }
     
 }
