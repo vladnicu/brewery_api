@@ -43,5 +43,12 @@ class BreweryController extends Controller
             ->transformWith(new BreweryTransformer)
             ->toArray();
     }
+
+    public function destroy(Brewery $brewery) {
+        $this->authorize('destroy', $brewery);
+        $brewery->delete();
+
+        return response(null, 204);
+    }
     
 }
