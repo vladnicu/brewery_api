@@ -10,6 +10,16 @@ use App\Transformers\BreweryTransformer;
 
 class BreweryController extends Controller
 {
+
+    public function index() {
+        $breweries = Brewery::latestFirst()->get();
+
+        return fractal()
+            ->collection($breweries)
+            ->transformWith(new BreweryTransformer)
+            ->toArray();
+    }
+
     public function show(Brewery $brewery) {
         return fractal()
             ->item($brewery)
