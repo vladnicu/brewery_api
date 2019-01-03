@@ -16,7 +16,7 @@ class ReceipeTransformer extends TransformerAbstract
     public function transform(Receipe $receipe)
     {
         return [
-            'name' => $receipe->title,
+            'title' => $receipe->title,
         ];
     }
     

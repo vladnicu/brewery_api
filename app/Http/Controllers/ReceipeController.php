@@ -24,4 +24,18 @@ class ReceipeController extends Controller
             ->toArray();
 
     }
+
+    public function update(StoreReceipeRequest $request, Brewery $brewery, Receipe $receipe) {
+
+        $this->authorize('update', $receipe);
+
+        //TODO aici trebuie sa pun pentru fiecare field
+        $receipe->title = $request->get('title', $receipe->title);
+        $receipe->save();
+
+        return fractal()
+            ->item($receipe)
+            ->transformWith(new ReceipeTransformer)
+            ->toArray();
+    }
 }

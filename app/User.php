@@ -37,4 +37,8 @@ class User extends Authenticatable
     public function ownsBrewery(Brewery $brewery) {
         return $this->id === $brewery->user->id;
     }
+
+    public function ownsReceipe(Receipe $receipe) {
+        return $this->id === $receipe->user->id;
+    }
 }

@@ -29,6 +29,7 @@ Route::group(['prefix' => 'breweries'], function() {
 
     Route::group(['prefix' => '/{brewery}/receipes'], function() {
         Route::post('/', 'ReceipeController@store')->middleware('auth:api');
+        Route::patch('/{receipe}', 'ReceipeController@update')->middleware('auth:api');
     });
 });
 
