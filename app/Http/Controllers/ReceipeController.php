@@ -10,6 +10,14 @@ use App\Transformers\ReceipeTransformer;
 
 class ReceipeController extends Controller
 {
+    public function index() {
+        $receipes = Receipe::latestFirst()->get();
+
+        return fractal()
+            ->collection($receipes)
+            ->transformWith(new ReceipeTransformer)
+            ->toArray();
+    }
     
     public function store(StoreReceipeRequest $request, Brewery $brewery) {
         $receipe = new Receipe;

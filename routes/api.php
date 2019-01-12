@@ -28,6 +28,7 @@ Route::group(['prefix' => 'breweries'], function() {
     Route::delete('/{brewery}', 'BreweryController@destroy')->middleware('auth:api');
 
     Route::group(['prefix' => '/{brewery}/receipes'], function() {
+        Route::get('/', 'ReceipeController@index')->middleware('auth:api');
         Route::post('/', 'ReceipeController@store')->middleware('auth:api');
         Route::patch('/{receipe}', 'ReceipeController@update')->middleware('auth:api');
     });
