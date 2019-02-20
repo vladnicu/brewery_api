@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', 'RegisterController@register');
 
+// TODO pentru ca toate au middleware auth:api cred ca se poate pune asta langa prefix
 Route::group(['prefix' => 'breweries'], function() {
     Route::get('/', 'BreweryController@index')->middleware('auth:api');
     Route::get('/{brewery}', 'BreweryController@show')->middleware('auth:api');
@@ -29,6 +30,7 @@ Route::group(['prefix' => 'breweries'], function() {
 
     Route::group(['prefix' => '/{brewery}/receipes'], function() {
         Route::get('/', 'ReceipeController@index')->middleware('auth:api');
+        Route::get('/{receipe}', 'ReceipeController@show')->middleware('auth:api');
         Route::post('/', 'ReceipeController@store')->middleware('auth:api');
         Route::patch('/{receipe}', 'ReceipeController@update')->middleware('auth:api');
     });

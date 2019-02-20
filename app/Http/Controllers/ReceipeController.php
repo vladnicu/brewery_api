@@ -18,6 +18,14 @@ class ReceipeController extends Controller
             ->transformWith(new ReceipeTransformer)
             ->toArray();
     }
+
+    public function show(App\Receipe $receipe) {
+        return fractal()
+            ->item($receipe)
+            //TODO aici trebuie sa pui parseIncludes
+            ->transformWith(new ReceipeTransformer)
+            ->toArray();
+    }
     
     public function store(StoreReceipeRequest $request, Brewery $brewery) {
         $receipe = new Receipe;
